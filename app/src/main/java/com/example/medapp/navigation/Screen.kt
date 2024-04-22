@@ -20,4 +20,6 @@ sealed class Screen(val route: String, var icon: Int? = null) {
     data object ActionProfile : Screen("action_profile")
     data object Devices : Screen("device")
 
+    data object DoctorsProfile : Screen("doctors_profile", R.drawable.prof)
+
 }

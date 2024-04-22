@@ -16,5 +16,5 @@ interface AuthService {
     suspend fun authorization(@Body authRequest: AuthRequest): Response<ResponseBody<AuthResponse>>
 
     @POST("user/reg")
-    suspend fun registration(@Body regRequest: RegistrationRequest):Response<AuthResponse>
+    suspend fun registration(@Body regRequest: RegistrationRequest): Response<ResponseBody<AuthResponse>>
 }

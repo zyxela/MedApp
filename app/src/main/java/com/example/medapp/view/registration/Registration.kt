@@ -1,4 +1,4 @@
-package com.example.medapp.view
+package com.example.medapp.view.registration
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -22,17 +22,19 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.medapp.R
+import com.example.medapp.navigation.Screen
 import com.example.medapp.ui.components.buttons.ActionButton
 import com.example.medapp.ui.components.checkboxes.CircleCheckBox
 import com.example.medapp.ui.components.text.InfoText
 import com.example.medapp.ui.components.text.LinkText
-import com.example.medapp.ui.components.textfields.RegistrationTextField
 import com.example.medapp.ui.components.text.TitleText
+import com.example.medapp.ui.components.textfields.RegistrationTextField
 import com.example.medapp.ui.theme.Lime800
 
 @Composable
-fun Registration() {
+fun Registration(navController: NavController, viewModel: RegistrationViewModel) {
     var email by remember {
         mutableStateOf("")
     }
@@ -126,13 +128,14 @@ fun Registration() {
                         ) {
 
                             ActionButton(150, text = "Continue") {
-
+                                viewModel.continueReg(email, password, if (isDoctor) "d" else "p")
+                                navController.navigate(Screen.PersonalData.route)
                             }
 
                             Row {
                                 InfoText(text = "Already have an account? ")
                                 LinkText(text = "Sign in") {
-
+                                    navController.navigate(Screen.Login.route)
                                 }
                             }
                         }
@@ -148,5 +151,5 @@ fun Registration() {
 @Preview(showBackground = true)
 @Composable
 fun RegistrationPreview() {
-    Registration()
+    //Registration(rememberNavController())
 }

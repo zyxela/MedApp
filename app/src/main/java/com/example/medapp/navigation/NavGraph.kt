@@ -4,15 +4,19 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navigation
+import com.example.medapp.utils.sharedViewModel
 import com.example.medapp.view.ActionProfile
 import com.example.medapp.view.Device.DeviceScreen
 import com.example.medapp.view.Doctors
+import com.example.medapp.view.DoctorsProfile
 import com.example.medapp.view.MedicalHistory
-import com.example.medapp.view.PersonalData
 import com.example.medapp.view.Profile
-import com.example.medapp.view.Registration
-import com.example.medapp.view.Visits
+import com.example.medapp.view.visits.Visits
 import com.example.medapp.view.login.Login
+import com.example.medapp.view.registration.PersonalData
+import com.example.medapp.view.registration.Registration
+import com.example.medapp.view.registration.RegistrationViewModel
 
 @Composable
 fun NavGraph(navController: NavHostController, startDestination: String = Screen.Login.route) {
@@ -22,12 +26,22 @@ fun NavGraph(navController: NavHostController, startDestination: String = Screen
         composable(Screen.Login.route) {
             Login(navController)
         }
-        composable(Screen.Registration.route) {
-            Registration()
+        navigation(startDestination = Screen.Registration.route, "COMMON"){
+            composable(Screen.Registration.route) { entry ->
+                val viewModel =
+                    entry.sharedViewModel<RegistrationViewModel>(navController = navController)
+
+
+                Registration(navController, viewModel)
+            }
+            composable(Screen.PersonalData.route) { entry ->
+                val viewModel =
+                    entry.sharedViewModel<RegistrationViewModel>(navController = navController)
+
+                PersonalData(navController, viewModel)
+            }
         }
-        composable(Screen.PersonalData.route) {
-            PersonalData()
-        }
+
 
 
         //PATIENT
@@ -46,12 +60,16 @@ fun NavGraph(navController: NavHostController, startDestination: String = Screen
             Visits(navController)
         }
 
-        composable(Screen.ActionProfile.route){
+        composable(Screen.ActionProfile.route) {
             ActionProfile(navController)
         }
 
-        composable(Screen.Devices.route){
+        composable(Screen.Devices.route) {
             DeviceScreen()
+        }
+
+        composable(Screen.DoctorsProfile.route) {
+            DoctorsProfile()
         }
 
     }

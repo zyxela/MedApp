@@ -1,4 +1,4 @@
-package com.example.medapp.view
+package com.example.medapp.view.visits
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.medapp.navigation.Screen
@@ -25,7 +26,7 @@ import com.example.medapp.ui.theme.Lime300
 import com.example.medapp.ui.theme.Lime800
 
 @Composable
-fun Visits(navController: NavController) {
+fun Visits(navController: NavController, viewModel: VisitsViewModel = hiltViewModel()) {
     Surface(modifier = Modifier.fillMaxSize()) {
         Column(
             verticalArrangement = Arrangement.SpaceBetween,

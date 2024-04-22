@@ -23,7 +23,7 @@ fun DoctorsBottomNavigation(navController: NavController) {
 
     val bottomItems = listOf(
         Screen.Visits,
-        Screen.UsersProfile
+        Screen.DoctorsProfile
     )
 
     BottomNavigation(

@@ -1,6 +1,5 @@
 package com.example.medapp.view.login
 
-import android.content.Context
 import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -30,7 +29,6 @@ import androidx.navigation.compose.rememberNavController
 import com.example.medapp.data.models.ResponseBody
 import com.example.medapp.data.models.UserResponse
 import com.example.medapp.data.models.auth.AuthResponse
-import com.example.medapp.data.source.TokenDataSource
 import com.example.medapp.navigation.Screen
 import com.example.medapp.ui.components.buttons.ActionButton
 import com.example.medapp.ui.components.text.InfoText
@@ -55,25 +53,25 @@ fun Login(navController: NavController, viewModel: LoginViewModel = hiltViewMode
 
     val result by viewModel.result.collectAsState()
 
-
     when (result) {
         is ApiResponse.Success -> {
-            TokenDataSource(context.getSharedPreferences("prefs_key", Context.MODE_PRIVATE)).setJWT(
-                (result as ApiResponse.Success<ResponseBody<AuthResponse>>).data.data.jwt
-            )
+            val response = (result as ApiResponse.Success<ResponseBody<AuthResponse>>).data
+            val token = response.data.jwt
+            val userId = response.data.user_id
+            viewModel.setJWT(token)
+            viewModel.setUserId(userId)
             viewModel.getUser()
-
         }
 
         is ApiResponse.Failure -> {
             Toast.makeText(
                 context,
-                (result as ApiResponse.Failure).errorMessage.orEmpty(),
+                (result as ApiResponse.Failure).errorMessage,
                 Toast.LENGTH_LONG
             ).show()
         }
 
-        ApiResponse.Loading -> {
+        is ApiResponse.Loading -> {
 
         }
     }
@@ -91,12 +89,12 @@ fun Login(navController: NavController, viewModel: LoginViewModel = hiltViewMode
         }
 
         is ApiResponse.Success<ResponseBody<UserResponse>> -> {
-            //val res = user.data.data
-            Toast.makeText(
-                context,
-                (user as ApiResponse.Success<ResponseBody<UserResponse>>).data.data.email.toString(),
-                Toast.LENGTH_LONG
-            ).show()
+            val role = (user as ApiResponse.Success<ResponseBody<UserResponse>>).data.data.role
+            if (role == "d")
+                navController.navigate(Screen.DoctorsProfile.route)
+            else {
+                navController.navigate(Screen.UsersProfile.route)
+            }
         }
 
         is ApiResponse.Loading -> {

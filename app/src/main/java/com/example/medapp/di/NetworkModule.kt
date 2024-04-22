@@ -2,10 +2,8 @@ package com.example.medapp.di
 
 import com.example.medapp.data.network.AuthService
 import com.example.medapp.data.network.UserService
-import com.example.medapp.data.repositoryImpl.AuthCommon
+import com.example.medapp.data.network.VisitsService
 import com.example.medapp.data.source.TokenDataSource
-import com.example.medapp.data.source.UserDataSource
-import com.example.medapp.utils.ApiRequestFlow
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -47,15 +45,6 @@ class NetworkModule {
         HeaderInterceptor(tokenManager)
 
 
-    @Provides
-    @Singleton
-    fun getAuthCommon(
-        userService: UserService,
-        userDataSource: UserDataSource,
-        apiRequestFlow: ApiRequestFlow
-    ): AuthCommon {
-        return AuthCommon(userService, userDataSource, apiRequestFlow)
-    }
 
     @Provides
     @Singleton
@@ -66,6 +55,11 @@ class NetworkModule {
     @Singleton
     fun getUserService(retrofit: Builder, okHttpClient: OkHttpClient): UserService =
         retrofit.client(okHttpClient).build().create(UserService::class.java)
+
+    @Provides
+    @Singleton
+    fun getVisitsService(retrofit: Builder, okHttpClient: OkHttpClient): VisitsService =
+        retrofit.client(okHttpClient).build().create(VisitsService::class.java)
 
 
 }

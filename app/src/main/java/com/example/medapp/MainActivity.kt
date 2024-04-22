@@ -5,9 +5,12 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material3.Scaffold
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.medapp.navigation.NavGraph
+import com.example.medapp.navigation.Screen
 import com.example.medapp.ui.components.navigation.DoctorsBottomNavigation
+import com.example.medapp.ui.components.navigation.UsersBottomNavigation
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -19,11 +22,20 @@ class MainActivity : ComponentActivity() {
         setContent {
             val navController = rememberNavController()
 
+            val currentRoute =
+                navController.currentBackStackEntryAsState().value?.destination?.route
+
+
+
             Scaffold(bottomBar = {
-                when(navController.currentDestination?.route){
-                   // Screen.
+
+                if (currentRoute in usersRoutes) {
+                    UsersBottomNavigation(navController = navController)
                 }
-                DoctorsBottomNavigation(navController = navController)
+                if (currentRoute in doctorsRoutes) {
+                    DoctorsBottomNavigation(navController = navController)
+                }
+
             }) {
                 NavGraph(navController)
             }
@@ -36,3 +48,15 @@ class MainActivity : ComponentActivity() {
 
 
 }
+
+
+internal val usersRoutes = listOf(
+    Screen.UsersProfile.route,
+    Screen.MedHistory.route,
+    Screen.Doctors.route
+)
+
+internal val doctorsRoutes = listOf(
+    Screen.Visits.route,
+    Screen.DoctorsProfile.route
+)

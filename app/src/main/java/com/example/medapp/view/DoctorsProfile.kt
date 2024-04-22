@@ -17,7 +17,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.medapp.R
 import com.example.medapp.ui.components.buttons.FloatingEditButton
@@ -27,7 +26,7 @@ import com.example.medapp.ui.theme.Grey500
 import com.example.medapp.ui.theme.Lime800
 
 @Composable
-fun Profile() {
+fun DoctorsProfile() {
     Surface(modifier = Modifier.fillMaxSize()) {
         Box(modifier = Modifier.fillMaxSize()) {
 
@@ -62,8 +61,8 @@ fun Profile() {
                                 )
 
                             }
-                            TextRobotoBold(text = "John Doe", fontSize = 26, color = Lime800)
-                            TextRobotoBold(text = "Male, 54 y.o", fontSize = 18, color = Grey500)
+                            TextRobotoBold(text = "Jason Satham", fontSize = 26, color = Lime800)
+                            TextRobotoBold(text = "Cardiologist", fontSize = 18, color = Grey500)
 
                         }
 
@@ -75,18 +74,21 @@ fun Profile() {
                     horizontalAlignment = Alignment.Start
                 ) {
                     Row {
-                        TextRobotoBold(text = "Last visit: ", fontSize = 18)
-                        TextRobotoLight(text = "Today 8:40", fontSize = 18)
+                        TextRobotoBold(text = "Stage: ", fontSize = 18)
+                        TextRobotoLight(text = "5 yers", fontSize = 18)
                     }
                     Row {
-                        TextRobotoBold(text = "Address: ", fontSize = 18)
-                        TextRobotoLight(text = "204, Wall st.", fontSize = 18)
+                        TextRobotoBold(text = "Office: ", fontSize = 18)
+                        TextRobotoLight(text = "204", fontSize = 18)
+                    }
+                    Row {
+                        TextRobotoBold(text = "Schedule: ", fontSize = 18)
+                        TextRobotoLight(text = "Mon-Fri 9:00-16:00", fontSize = 18)
                     }
                     Row {
                         TextRobotoBold(text = "Email: ", fontSize = 18)
-                        TextRobotoLight(text = "john.doe@example.com", fontSize = 18)
+                        TextRobotoLight(text = "jason.statham@mail.ru", fontSize = 18)
                     }
-
 
                     Row(modifier = Modifier.fillMaxWidth().padding(0.dp,30.dp,0.dp,0.dp), horizontalArrangement = Arrangement.End) {
                         FloatingEditButton {
@@ -102,10 +104,4 @@ fun Profile() {
 
     }
 
-}
-
-@Preview(showBackground = true)
-@Composable
-fun ProfilePreview() {
-    Profile()
 }
