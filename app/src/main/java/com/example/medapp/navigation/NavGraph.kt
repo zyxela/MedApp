@@ -5,22 +5,22 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.medapp.view.ActionProfile
-import com.example.medapp.view.DeviceScreen
+import com.example.medapp.view.Device.DeviceScreen
 import com.example.medapp.view.Doctors
-import com.example.medapp.view.Login
 import com.example.medapp.view.MedicalHistory
 import com.example.medapp.view.PersonalData
 import com.example.medapp.view.Profile
 import com.example.medapp.view.Registration
 import com.example.medapp.view.Visits
+import com.example.medapp.view.login.Login
 
 @Composable
-fun NavGraph(navController: NavHostController, startDestination: String = Screen.ActionProfile.route) {
+fun NavGraph(navController: NavHostController, startDestination: String = Screen.Login.route) {
     NavHost(navController = navController, startDestination = startDestination) {
 
         //AUTH
         composable(Screen.Login.route) {
-            Login()
+            Login(navController)
         }
         composable(Screen.Registration.route) {
             Registration()

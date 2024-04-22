@@ -1,5 +1,5 @@
 
-package com.example.medapp.view
+package com.example.medapp.view.Device
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement

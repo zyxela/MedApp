@@ -71,13 +71,18 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     implementation(libs.androidx.runtime.livedata)
-    implementation(libs.androidx.runtime.livedata)
+
 
 
     //hilt
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
+
+    //retrofit
+    implementation(libs.retrofit)
+    implementation(libs.gson)
+    implementation(libs.converter.gson)
 
     implementation(libs.ui)
     implementation(libs.androidx.material)

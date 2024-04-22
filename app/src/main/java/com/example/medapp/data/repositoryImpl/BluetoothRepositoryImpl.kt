@@ -18,6 +18,7 @@ class BluetoothRepositoryImpl @Inject constructor(private val context: Context) 
     private val bluetoothDevices = mutableListOf<BluetoothDevice>()
 
     private val bluetoothReceiver = object : BroadcastReceiver() {
+        @SuppressLint("MissingPermission")
         override fun onReceive(context: Context?, intent: Intent?) {
             when (intent?.action) {
                 BluetoothDevice.ACTION_FOUND -> {
@@ -25,7 +26,7 @@ class BluetoothRepositoryImpl @Inject constructor(private val context: Context) 
                         intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE)
                     device?.let {
                         bluetoothDevices.add(it)
-                        println(it)
+                        println(it.name)
                     }
                 }
             }

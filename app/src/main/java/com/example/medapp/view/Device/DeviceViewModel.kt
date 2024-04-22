@@ -1,4 +1,4 @@
-package com.example.medapp.view
+package com.example.medapp.view.Device
 
 import android.bluetooth.BluetoothDevice
 import androidx.lifecycle.ViewModel
