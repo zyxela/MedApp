@@ -1,11 +1,11 @@
-package com.example.medapp.view.visits
+package com.example.medapp.view.medHistory
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.medapp.data.models.DoctorVisitResponse
+import com.example.medapp.data.models.HistoryResponse
 import com.example.medapp.data.models.ResponseBody
-import com.example.medapp.data.repository.VisitsRepository
+import com.example.medapp.data.repository.MedHistoryRepository
 import com.example.medapp.utils.ApiResponse
 import com.example.medapp.view.baseRequest.BaseRequest
 import com.example.medapp.view.baseRequest.CoroutinesErrorHandler
@@ -15,31 +15,33 @@ import kotlinx.coroutines.flow.asStateFlow
 import javax.inject.Inject
 
 @HiltViewModel
-class VisitsViewModel @Inject constructor(
-    private val visitsRepository: VisitsRepository,
-    private val baseRequest: BaseRequest
-) :
-    ViewModel() {
-    private val _visits =
-        MutableStateFlow<ApiResponse<ResponseBody<List<DoctorVisitResponse>>>>(ApiResponse.Loading)
-    val visits = _visits.asStateFlow()
+class MedHistoryViewModel @Inject constructor(
+    private val baseRequest: BaseRequest,
+    private val medHistoryRepository: MedHistoryRepository
+) : ViewModel() {
+
+    private val _medHistory =
+        MutableStateFlow<ApiResponse<ResponseBody<List<HistoryResponse>>>>(ApiResponse.Loading)
+
+    val medHistory = _medHistory.asStateFlow()
+
 
     private val _coroutinesErrorHandlerLiveData = MutableLiveData<String>()
 
     private val coroutinesErrorHandler = object : CoroutinesErrorHandler {
         override fun onError(message: String) {
             _coroutinesErrorHandlerLiveData.value = message
-            println(message)
         }
     }
 
-    fun getVisits() {
+    fun getMedHistory(){
         baseRequest(
-            _visits,
+            _medHistory,
             coroutinesErrorHandler,
             viewModelScope
-        ) {
-            visitsRepository.getVisits()
+        ){
+            medHistoryRepository.getMedHistory()
         }
     }
+
 }

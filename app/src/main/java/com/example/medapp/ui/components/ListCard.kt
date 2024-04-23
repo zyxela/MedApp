@@ -28,19 +28,28 @@ import com.example.medapp.ui.theme.Lime800
 
 
 @Composable
-fun ListCard(strokeColor: Color = Lime500, textColor: Color = Lime800, action: ()->Unit) {
-    Box (modifier = Modifier.padding(0.dp,0.dp,0.dp,10.dp)){
+fun ListCard(
+    text: String,
+    secondText: String,
+    strokeColor: Color = Lime500,
+    textColor: Color = Lime800,
+    action: () -> Unit
+) {
+    Box(modifier = Modifier.padding(0.dp, 0.dp, 0.dp, 10.dp)) {
         Card(
             modifier = Modifier
                 .fillMaxWidth()
                 .border(2.dp, strokeColor, RoundedCornerShape(12.dp))
-                .clickable{
+                .clickable {
                     action()
                 },
             shape = RoundedCornerShape(12.dp),
             colors = CardDefaults.cardColors(containerColor = Color.White)
         ) {
-            Row(modifier = Modifier.padding(10.dp), verticalAlignment = Alignment.CenterVertically) {
+            Row(
+                modifier = Modifier.padding(10.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
                 Card(
                     modifier = Modifier
                         .border(2.dp, strokeColor, CircleShape)
@@ -57,8 +66,8 @@ fun ListCard(strokeColor: Color = Lime500, textColor: Color = Lime800, action: (
                         )
                 }
                 Column(modifier = Modifier.padding(10.dp, 0.dp, 10.dp, 0.dp)) {
-                    InfoText(text = "John Doe", color = textColor)
-                    InfoText(text = "Mar 29 15:00", color = strokeColor, fontSize = 14)
+                    InfoText(text = text, color = textColor)
+                    InfoText(text = secondText, color = strokeColor, fontSize = 14)
                 }
             }
         }
@@ -69,7 +78,10 @@ fun ListCard(strokeColor: Color = Lime500, textColor: Color = Lime800, action: (
 @Preview(showBackground = true)
 @Composable
 fun ListCardPreview() {
-    ListCard(){
+    ListCard(
+        "Jokn Doe",
+        "Mar 12, 2022"
+    ) {
 
     }
 }

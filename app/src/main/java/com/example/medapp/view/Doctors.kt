@@ -15,7 +15,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.medapp.ui.components.ListCard
 import com.example.medapp.ui.components.text.TitleText
 import com.example.medapp.ui.theme.Lime300
 import com.example.medapp.ui.theme.Lime800
@@ -44,9 +43,9 @@ fun Doctors() {
                 ) {
 
                     items(41) {
-                        ListCard(){
+                       /* ListCard(){
 
-                        }
+                        }*/
                     }
                 }
             }

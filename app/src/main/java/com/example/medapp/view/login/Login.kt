@@ -44,11 +44,11 @@ fun Login(navController: NavController, viewModel: LoginViewModel = hiltViewMode
     val context = LocalContext.current
 
     var login by remember {
-        mutableStateOf("john.doe@example.com")
+        mutableStateOf("michael.wilson@example.com")
     }
 
     var password by remember {
-        mutableStateOf("password1")
+        mutableStateOf("password6")
     }
 
     val result by viewModel.result.collectAsState()

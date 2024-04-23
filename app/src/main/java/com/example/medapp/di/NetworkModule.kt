@@ -1,6 +1,7 @@
 package com.example.medapp.di
 
 import com.example.medapp.data.network.AuthService
+import com.example.medapp.data.network.MedHistoryService
 import com.example.medapp.data.network.UserService
 import com.example.medapp.data.network.VisitsService
 import com.example.medapp.data.source.TokenDataSource
@@ -45,7 +46,6 @@ class NetworkModule {
         HeaderInterceptor(tokenManager)
 
 
-
     @Provides
     @Singleton
     fun getAuthService(retrofit: Retrofit.Builder, okHttpClient: OkHttpClient): AuthService =
@@ -61,5 +61,10 @@ class NetworkModule {
     fun getVisitsService(retrofit: Builder, okHttpClient: OkHttpClient): VisitsService =
         retrofit.client(okHttpClient).build().create(VisitsService::class.java)
 
+
+    @Provides
+    @Singleton
+    fun getMedHistoryService(retrofit: Builder, okHttpClient: OkHttpClient): MedHistoryService =
+        retrofit.client(okHttpClient).build().create(MedHistoryService::class.java)
 
 }

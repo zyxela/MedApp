@@ -21,7 +21,7 @@ import com.example.medapp.ui.theme.Lime500
 import com.example.medapp.ui.theme.Lime800
 
 @Composable
-fun MedicalHistoryCard(diagnoseDate: String, recoveryDate: String, recommendation: String) {
+fun MedicalHistoryCard(diagnose:String, diagnoseDate: String, recoveryDate: String, recommendation: String) {
     Card(
         modifier = Modifier.padding(0.dp,0.dp,0.dp,15.dp).shadow(2.dp, shape = RoundedCornerShape(12.dp)),
         colors = CardDefaults.cardColors(Color.White, Color.White, Color.White, Color.White)) {
@@ -37,7 +37,7 @@ fun MedicalHistoryCard(diagnoseDate: String, recoveryDate: String, recommendatio
                         .fillMaxWidth()
                         .padding(15.dp)
                 ) {
-                    RegularText(text = "Influenza", color = Color.White, fontSize = 26)
+                    RegularText(text = diagnose, color = Color.White, fontSize = 26)
                 }
 
             }
@@ -74,7 +74,7 @@ fun MedicalHistoryCard(diagnoseDate: String, recoveryDate: String, recommendatio
 @Preview(showBackground = true)
 @Composable
 fun MedicalHistoryCardPreview() {
-    MedicalHistoryCard(
+    MedicalHistoryCard("Influenza",
         "Feb, 18 2020", "Mar, 18 2020", "Zanamivir 2 times everyday\n" +
                 "Terraflu 1 time everyday\n" +
                 "Limit your physical activity"

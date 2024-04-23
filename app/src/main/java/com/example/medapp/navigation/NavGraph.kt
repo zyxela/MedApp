@@ -9,9 +9,9 @@ import com.example.medapp.utils.sharedViewModel
 import com.example.medapp.view.ActionProfile
 import com.example.medapp.view.Device.DeviceScreen
 import com.example.medapp.view.Doctors
-import com.example.medapp.view.DoctorsProfile
-import com.example.medapp.view.MedicalHistory
-import com.example.medapp.view.Profile
+import com.example.medapp.view.doctorProfile.DoctorsProfile
+import com.example.medapp.view.medHistory.MedicalHistory
+import com.example.medapp.view.userProfile.Profile
 import com.example.medapp.view.visits.Visits
 import com.example.medapp.view.login.Login
 import com.example.medapp.view.registration.PersonalData
